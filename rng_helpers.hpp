@@ -24,12 +24,12 @@ namespace rum
         static_assert(HIGH > LOW);
 
         BasicGen() noexcept = default;
-        float Generate() { return (GenerateFloat() * (HIGH - LOW)) + LOW; }
+        float Generate() const { return (GenerateFloat() * (HIGH - LOW)) + LOW; }
     };
     template <>
     struct BasicGen<0.0f, 1.0f>
     {
         BasicGen() noexcept = default;
-        float Generate() { return GenerateFloat(); }
+        float Generate() const { return GenerateFloat(); }
     };
 };
