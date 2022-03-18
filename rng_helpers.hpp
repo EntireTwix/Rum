@@ -3,9 +3,9 @@
 
 namespace rum
 {
-    static pcg32_8 gen; // Global generator
+    static pcg32_8 gen; // global generator
     
-    // Not thread-safe
+    // not thread-safe
     float GenerateFloat()
     {
         static uint_fast8_t counter = 0;
@@ -18,18 +18,17 @@ namespace rum
         return rand_cache[--counter];
     }
 
-    template <float LOW = 0, float HIGH = 1>
-    class BasicGen
+    template <float LOW = 0.0f, float HIGH = 1.0f>
+    struct BasicGen
     {
         static_assert(HIGH > LOW);
-    public:
+
         BasicGen() noexcept = default;
         float Generate() { return (GenerateFloat() * (HIGH - LOW)) + LOW; }
     };
     template <>
-    class BasicGen<0.0f, 1.0f>
+    struct BasicGen<0.0f, 1.0f>
     {
-    public:
         BasicGen() noexcept = default;
         float Generate() { return GenerateFloat(); }
     };
