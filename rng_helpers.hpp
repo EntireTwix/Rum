@@ -3,13 +3,13 @@
 
 namespace rum
 {
-    static pcg32_8 gen; // global generator
+    thread_local pcg32_8 gen; // global generator
     
-    // not thread-safe
+    // thread-safe
     float GenerateFloat()
     {
-        static uint_fast8_t counter = 0;
-        static float rand_cache[8];
+        thread_local uint_fast8_t counter = 0;
+        thread_local float rand_cache[8];
         if(counter == 0)
         {
             gen.nextFloat(rand_cache);
