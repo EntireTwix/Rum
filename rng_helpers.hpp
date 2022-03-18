@@ -1,9 +1,10 @@
 #pragma once
+#include <cassert>
+#include <cstdint>
 #include "third_party/pcg32_8.h"
 
 namespace rum
 {
-    
     // thread-safe
     float GenerateFloat()
     {
@@ -21,7 +22,7 @@ namespace rum
     struct BasicGen
     {
         float _low, _high;
-        BasicGen(float low = 0.0f, float high = 1.0f) noexcept : _low(low), _high(high) { assert(_high > _low); }
-        float Generate() const { return (GenerateFloat() * (_high - _low)) + _low; }
+        BasicGen(float low = 0.0f, float high = 1.0f) noexcept : _low(low), _high(high) { assert(this->_high > this->_low); }
+        float Generate() const { return (GenerateFloat() * (this->_high - this->_low)) + this->_low; }
     };
 };
