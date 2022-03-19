@@ -21,6 +21,6 @@ namespace rum
     constexpr float sigmoid_prime(float x) { return exp(-x) / std::pow(1 + exp(-x), 2); }
 
     //swish
-    constexpr float swish(float x) { return x * Sigmoid(x); }
+    constexpr float swish(float x) { return x * sigmoid(x); }
     constexpr float swish_prime(float x) { return (exp(x) * (exp(x) + x + 1)) / std::pow(exp(x) + 1, 2);}
 }
