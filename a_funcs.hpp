@@ -14,7 +14,7 @@ namespace rum
     constexpr float relu_leaky_prime(float x) { if (x < 0) { return A; } else { return 1; } }
 
     //tanh
-    constexpr float tanh_prime(float x) { return 1 - (tanh(x), 2); }
+    constexpr float tanh_prime(float x) { return 1 - std::pow(tanh(x), 2); }
 
     //sigmoid
     constexpr float sigmoid(float x) { return 1 / (1 + exp(-x)); }
