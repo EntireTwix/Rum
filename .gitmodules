@@ -1,0 +1,3 @@
+[submodule "third_party/Matrix"]
+	path = third_party/Matrix
+	url = https://github.com/EntireTwix/Matrix
