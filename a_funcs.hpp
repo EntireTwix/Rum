@@ -1,6 +1,6 @@
 #pragma once
 #include <cmath>
-#include "dependencies/pow.hpp"
+#include "third_party/Matrix/std/dependencies/pow.hpp"
 
 namespace rum
 {
