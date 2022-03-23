@@ -17,4 +17,4 @@ OMat<output_size> LAYER_N(name, out);                     \
 BMat<output_size> LAYER_N(name, out_error);               \
 WMat<hidden_size, output_size> LAYER_N(name, w2_error);   \
 BMat<hidden_size> LAYER_N(name, h1_error);                \
-WMat<input_size, hidden_size> LAYER_N(name, w1_error);    \
+WMat<input_size, hidden_size> LAYER_N(name, w1_error);    
