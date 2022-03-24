@@ -25,7 +25,7 @@ LAYER_N(name, h1o) = HiddenForward(LAYER_N(name, w1o), h1_a);                   
 LAYER_N(name, w2o) = WeightForward(LAYER_N(name, h1o), LAYER_N(name, w2), LAYER_N(name, b2));\
 LAYER_N(name, out) = HiddenForward(LAYER_N(name, w2o), out_a);                               
 
-#define RUM_FF_B(name, h1_a, out_a)                                                                             \
+#define RUM_FF_B(name, h1_ap, out_ap)                                                                             \
 LAYER_N(name, out_error) = OutputBackward(LAYER_N(name, out), LAYER_N(name, ans), LAYER_N(name, w2o), out_a);   \
 LAYER_N(name, w2_error) = WeightBackward(LAYER_N(name, out_error), LAYER_N(name, h1o));                         \
 LAYER_N(name, h1_error) = HiddenBackward(LAYER_N(name, out_error), LAYER_N(name, w2), LAYER_N(name, w1o), h1_a);\
@@ -55,7 +55,7 @@ WMat<input_size, hidden_size> LAYER_N(name, w1_error);
 
 #define RUM_AE_F(name, h1_a, out_a) RUM_FF_F(name, h1_a, out_a)                              
 
-#define RUM_AE_B(name, h1_a, out_a)                                                                             \
+#define RUM_AE_B(name, h1_ap, out_ap)                                                                           \
 LAYER_N(name, out_error) = OutputBackward(LAYER_N(name, out), LAYER_N(name, inp), LAYER_N(name, w2o), out_a);   \
 LAYER_N(name, w2_error) = WeightBackward(LAYER_N(name, out_error), LAYER_N(name, h1o));                         \
 LAYER_N(name, h1_error) = HiddenBackward(LAYER_N(name, out_error), LAYER_N(name, w2), LAYER_N(name, w1o), h1_a);\
