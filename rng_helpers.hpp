@@ -25,7 +25,7 @@ namespace rum
     private:
         const float _low, _high;
     public:
-        BasicGen(float low = 0.0f, float high = 1.0f) noexcept : _low(low), _high(high) { assert(this->_high > this->_low); }
+        BasicGen(float low = 0, float high = 1) noexcept : _low(low), _high(high) { assert(this->_high > this->_low); }
         float operator()() const { return (GenerateFloat() * (this->_high - this->_low)) + this->_low; }
     }; 
 

@@ -36,7 +36,6 @@ Learn(LAYER_N(name, w2), LAYER_N(name, w2_error), learning_rate); \
 Learn(LAYER_N(name, b1), LAYER_N(name, h1_error), learning_rate); \
 Learn(LAYER_N(name, w1), LAYER_N(name, w1_error), learning_rate);      
 
-
 #define RUM_AE(name, input_size, hidden_size)  \
 WMat<input_size, hidden_size> LAYER_N(name, w1);      \
 BMat<hidden_size> LAYER_N(name, b1);                  \
