@@ -13,13 +13,13 @@ namespace rum
     constexpr float relu_leaky_prime(float x) { if (x < 0) { return 0.01; } else { return 1; } }
 
     //tanh
-    constexpr float tanh_prime(float x) { return 1 - pow2<double>(tanh(x)); }
+    constexpr float tanh_prime(float x) { return 1 - pow2<float>(tanh(x)); }
 
     //sigmoid
     constexpr float sigmoid(float x) { return 1 / (1 + exp(-x)); }
-    constexpr float sigmoid_prime(float x) { float temp = exp(-x); return temp / pow2<double>(1 + temp); } // TODO: benchmark alternatives
+    constexpr float sigmoid_prime(float x) { float temp = exp(-x); return temp / pow2<float>(1 + temp); }
 
     //swish
     constexpr float swish(float x) { return x * sigmoid(x); }
-    constexpr float swish_prime(float x) { return (exp(x) * (exp(x) + x + 1)) / pow2<double>(exp(x) + 1);}
+    constexpr float swish_prime(float x) { return (exp(x) * (exp(x) + x + 1)) / pow2<float>(exp(x) + 1);}
 }
