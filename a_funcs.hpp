@@ -17,7 +17,7 @@ namespace rum
 
     //sigmoid
     constexpr float sigmoid(float x) { return 1 / (1 + exp(-x)); }
-    constexpr float sigmoid_prime(float x) { return sigmoid(x) * (1 - sigmoid(x)); } // TODO: benchmark alternatives
+    constexpr float sigmoid_prime(float x) { float temp = exp(-x); return temp / pow2<double>(1 + temp); } // TODO: benchmark alternatives
 
     //swish
     constexpr float swish(float x) { return x * sigmoid(x); }
