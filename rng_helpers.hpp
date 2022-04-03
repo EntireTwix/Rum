@@ -5,18 +5,18 @@
 
 namespace rum
 {
-    thread_local pcg32_8 gen; // global generator
-    
-    // thread-safe
     float GenerateFloat()
     {
-        thread_local uint_fast8_t counter = 0;
-        thread_local float rand_cache[8];
-        if(counter == 0)
+        static pcg32_8 gen; // global generator
+        static uint_fast8_t counter = 0;
+        static float rand_cache[8];
+        if (counter == 0)
         {
+            // std::cout << "generating new floats\n";
             gen.nextFloat(rand_cache);
             counter = 8;
         }
+        // std::cout << counter - 1 << '\n';
         return rand_cache[--counter];
     }
 
