@@ -5,9 +5,10 @@
 
 namespace rum
 {
+    pcg32_8 gen; // global generator
+    
     float GenerateFloat()
     {
-        static pcg32_8 gen; // global generator
         static uint_fast8_t counter = 0;
         static float rand_cache[8];
         if (counter == 0)
