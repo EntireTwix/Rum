@@ -3,10 +3,9 @@
 
 namespace rum
 {
-    template <typename T>
-    constexpr void SoftMaxMut(T ptr, size_t sz)
+    constexpr void SoftMaxMut(float* ptr, size_t sz)
     {
-        std::remove_reference_t<decltype(*ptr)> m, sum, constant;
+        float m, sum, constant;
         size_t i;
 
         m = 0;
