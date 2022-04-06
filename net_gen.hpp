@@ -1,6 +1,8 @@
 #pragma once
 #include "third_party/Matrix/std/ml_ops.hpp"
 
+// existing models for convenience
+
 #define LAYER_N(net_name, name) net_name##_layer_##name         
 
 #define RUM_FF(name, input_size, hidden_size, output_size)\
