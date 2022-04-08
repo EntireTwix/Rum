@@ -9,8 +9,8 @@ namespace rum
     constexpr float relu_prime(float x) { return x > 0; }
 
     //leaky relu
-    constexpr float relu_leaky(float x) { if (x < 0) { return x * 0.01; } else { return x; } }
-    constexpr float relu_leaky_prime(float x) { if (x < 0) { return 0.01; } else { return 1; } }
+    constexpr float relu_leaky(float x) { if (x < 0) { return x * 0.01f; } else { return x; } }
+    constexpr float relu_leaky_prime(float x) { if (x < 0) { return 0.01f; } else { return 1.0f; } }
 
     //tanh
     constexpr float tanh_prime(float x) { return 1 - pow2<float>(tanh(x)); }
