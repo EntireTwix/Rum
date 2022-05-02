@@ -1,24 +1,22 @@
 #pragma once
 #include "third_party/Matrix/std/ml_ops.hpp"
 
-// existing models for convenience
-
 #define LAYER_N(net_name, name) net_name##_layer_##name         
 
 #define RUM_FF(name, input_size, hidden_size, output_size)\
-WMat<input_size, hidden_size> LAYER_N(name, w1);          \
-BMat<hidden_size> LAYER_N(name, b1);                      \
-WMat<hidden_size, output_size> LAYER_N(name, w2);         \
-BMat<output_size> LAYER_N(name, b2);                      \
-OMat<output_size> LAYER_N(name, ans);                     \
-OMat<hidden_size> LAYER_N(name, w1o);                     \
-OMat<hidden_size> LAYER_N(name, h1o);                     \
-OMat<output_size> LAYER_N(name, w2o);                     \
-OMat<output_size> LAYER_N(name, out);                     \
-BMat<output_size> LAYER_N(name, out_error);               \
-WMat<hidden_size, output_size> LAYER_N(name, w2_error);   \
-BMat<hidden_size> LAYER_N(name, h1_error);                \
-WMat<input_size, hidden_size> LAYER_N(name, w1_error);    
+mat::WMat<input_size, hidden_size> LAYER_N(name, w1);          \
+mat::BMat<hidden_size> LAYER_N(name, b1);                      \
+mat::WMat<hidden_size, output_size> LAYER_N(name, w2);         \
+mat::BMat<output_size> LAYER_N(name, b2);                      \
+mat::OMat<output_size> LAYER_N(name, ans);                     \
+mat::OMat<hidden_size> LAYER_N(name, w1o);                     \
+mat::OMat<hidden_size> LAYER_N(name, h1o);                     \
+mat::OMat<output_size> LAYER_N(name, w2o);                     \
+mat::OMat<output_size> LAYER_N(name, out);                     \
+mat::BMat<output_size> LAYER_N(name, out_error);               \
+mat::WMat<hidden_size, output_size> LAYER_N(name, w2_error);   \
+mat::BMat<hidden_size> LAYER_N(name, h1_error);                \
+mat::WMat<input_size, hidden_size> LAYER_N(name, w1_error);    
 
 #define RUM_FF_F(name, input, h1_a, out_a)                                                     \
 LAYER_N(name, w1o) = WeightForward(input, LAYER_N(name, w1), LAYER_N(name, b1));               \
@@ -39,18 +37,18 @@ Learn(LAYER_N(name, b1), LAYER_N(name, h1_error), learning_rate); \
 Learn(LAYER_N(name, w1), LAYER_N(name, w1_error), learning_rate);      
 
 #define RUM_AE(name, input_size, hidden_size)         \
-WMat<input_size, hidden_size> LAYER_N(name, w1);      \
-BMat<hidden_size> LAYER_N(name, b1);                  \
-WMat<hidden_size, input_size> LAYER_N(name, w2);      \
-BMat<input_size> LAYER_N(name, b2);                   \
-OMat<hidden_size> LAYER_N(name, w1o);                 \
-OMat<hidden_size> LAYER_N(name, h1o);                 \
-OMat<input_size> LAYER_N(name, w2o);                  \
-OMat<input_size> LAYER_N(name, out);                  \
-BMat<input_size> LAYER_N(name, out_error);            \
-WMat<hidden_size, input_size> LAYER_N(name, w2_error);\
-BMat<hidden_size> LAYER_N(name, h1_error);            \
-WMat<input_size, hidden_size> LAYER_N(name, w1_error);    
+mat::WMat<input_size, hidden_size> LAYER_N(name, w1);      \
+mat::BMat<hidden_size> LAYER_N(name, b1);                  \
+mat::WMat<hidden_size, input_size> LAYER_N(name, w2);      \
+mat::BMat<input_size> LAYER_N(name, b2);                   \
+mat::OMat<hidden_size> LAYER_N(name, w1o);                 \
+mat::OMat<hidden_size> LAYER_N(name, h1o);                 \
+mat::OMat<input_size> LAYER_N(name, w2o);                  \
+mat::OMat<input_size> LAYER_N(name, out);                  \
+mat::BMat<input_size> LAYER_N(name, out_error);            \
+mat::WMat<hidden_size, input_size> LAYER_N(name, w2_error);\
+mat::BMat<hidden_size> LAYER_N(name, h1_error);            \
+mat::WMat<input_size, hidden_size> LAYER_N(name, w1_error);    
 
 #define RUM_AE_F(name, input, h1_a, out_a) RUM_FF_F(name, input, h1_a, out_a)                              
 
