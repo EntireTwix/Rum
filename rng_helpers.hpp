@@ -7,7 +7,7 @@ namespace rum
 {
     pcg32_8 gen; // global generator
     
-    float GenerateFloat()
+    float generate_float()
     {
         static uint_fast8_t counter = 0;
         static float rand_cache[8];
@@ -21,13 +21,27 @@ namespace rum
         return rand_cache[--counter];
     }
 
+    uint32_t generate_uint()
+    {
+        static uint_fast8_t counter = 0;
+        static uint32_t rand_cache[8];
+        if (counter == 0)
+        {
+            // std::cout << "generating new floats\n";
+            gen.nextUInt(rand_cache);
+            counter = 8;
+        }
+        // std::cout << counter - 1 << '\n';
+        return rand_cache[--counter];
+    }
+
     class BasicGen
     {
     private:
         const float _low, _high;
     public:
         constexpr BasicGen(float low = 0.0f, float high = 1.0f) noexcept : _low(low), _high(high) { assert(this->_high > this->_low); }
-        float operator()() const { return (GenerateFloat() * (this->_high - this->_low)) + this->_low; }
+        float operator()() const { return (generate_float() * (this->_high - this->_low)) + this->_low; }
     }; 
 
     //for Sigmoid & Tanh
